@@ -35,6 +35,9 @@
     </div>
   </nav>
   <!-- End Navbar -->
+
+  <?php include($_SERVER["DOCUMENT_ROOT"]."includes/error_check.php"); ?>
+
   <div class="wrapper wrapper-full-page">
     <div class="page-header register-page header-filter" filter-color="black" style="background-image: url('/assets/img/login.jpg')">
       <div class="container">
@@ -69,25 +72,25 @@
                     </div>
                   </div>
                   <div class="col-md-5 mr-auto">
-                    <form class="form" method="" action="">
+                    <form class="form" method="POST" action="actions/login_action.php" id="register">
                       <div class="form-group has-default">
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <span class="input-group-text">
-                              <i class="material-icons">person</i>
+                              <i class="material-icons">person_outline</i>
                             </span>
                           </div>
-                          <input type="text" class="form-control" placeholder="Username...">
+                          <input type="text" class="form-control" placeholder="Username..." required id="username" name="username">
                         </div>
                       </div>
                       <div class="form-group has-default">
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <span class="input-group-text">
-                              <i class="material-icons">mail</i>
+                              <i class="material-icons">mail_outline</i>
                             </span>
                           </div>
-                          <input type="text" class="form-control" placeholder="Email...">
+                          <input type="email" class="form-control" placeholder="Email..." required id="email" name="email">
                         </div>
                       </div>
                       <div class="form-group has-default">
@@ -97,12 +100,22 @@
                               <i class="material-icons">lock_outline</i>
                             </span>
                           </div>
-                          <input type="password" placeholder="Password..." class="form-control">
+                          <input type="password" placeholder="Password..." class="form-control" required id="password" name="password">
+                        </div>
+                      </div>
+                      <div class="form-group has-default">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">lock</i>
+                            </span>
+                          </div>
+                          <input type="password" placeholder="Retype Password..." class="form-control" required id="password2" name="password2">
                         </div>
                       </div>
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input class="form-check-input" type="checkbox" value="" checked="">
+                          <input class="form-check-input" type="checkbox" name="agree_terms">
                           <span class="form-check-sign">
                             <span class="check"></span>
                           </span>
@@ -111,7 +124,7 @@
                         </label>
                       </div>
                       <div class="text-center">
-                        <a href="#pablo" class="btn btn-primary btn-round mt-4">Get Started</a>
+                        <button type="submit" class="btn btn-primary btn-round mt-4" name="action" value="register">Get Started</button>
                       </div>
                     </form>
                   </div>
