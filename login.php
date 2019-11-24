@@ -16,7 +16,7 @@
       <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="../dashboard.html" class="nav-link">
+            <a href="/" class="nav-link">
               <i class="material-icons">dashboard</i> Home
             </a>
           </li>
