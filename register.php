@@ -20,13 +20,13 @@
               <i class="material-icons">dashboard</i> Home
             </a>
           </li>
-          <li class="nav-item">
-            <a href="/register.php" class="nav-link">
+          <li class="nav-item  active ">
+            <a href="../pages/register.html" class="nav-link">
               <i class="material-icons">person_add</i> Register
             </a>
           </li>
-          <li class="nav-item active">
-            <a href="../pages/login.html" class="nav-link">
+          <li class="nav-item ">
+            <a href="/login.php" class="nav-link">
               <i class="material-icons">fingerprint</i> Login
             </a>
           </li>
@@ -36,53 +36,95 @@
   </nav>
   <!-- End Navbar -->
   <div class="wrapper wrapper-full-page">
-    <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('/assets/img/login.jpg'); background-size: cover; background-position: top center;">
-      <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+    <div class="page-header register-page header-filter" filter-color="black" style="background-image: url('/assets/img/login.jpg')">
       <div class="container">
         <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-            <form class="form" method="" action="">
-              <div class="card card-login card-hidden">
-                <div class="card-header card-header-rose text-center">
-                  <h4 class="card-title">Login</h4>
-                </div>
-                <div class="card-body ">
-                  <p class="card-description text-center">Need an account? <a href="/register.php">Register now!</a></p>
-                  <span class="bmd-form-group">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="material-icons">person</i>
-                        </span>
+          <div class="col-md-10 ml-auto mr-auto">
+            <div class="card card-signup">
+              <h2 class="card-title text-center">Register</h2>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-5 ml-auto">
+                    <div class="info info-horizontal">
+                      <div class="icon icon-primary">
+                        <i class="material-icons">people</i>
                       </div>
-                      <input type="text" class="form-control" placeholder="Username..." name="username">
-                    </div>
-                  </span>
-                  <span class="bmd-form-group">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="material-icons">lock_outline</i>
-                        </span>
+                      <div class="description">
+                        <h4 class="info-title">See People's Designs</h4>
+                        <p class="description">
+                          View work from designers to get inspired, or post your own to inspire others!
+                        </p>
                       </div>
-                      <input type="password" class="form-control" placeholder="Password..." name="password">
                     </div>
-                  </span>
-                </div>
-                <div class="card-footer justify-content-center">
-                  <a href="#pablo" class="btn btn-rose btn-round">Lets Go</a>
+                    <div class="info info-horizontal">
+                      <div class="icon icon-info">
+                        <i class="material-icons">star</i>
+                      </div>
+                      <div class="description">
+                        <h4 class="info-title">Star Designs You Love</h4>
+                        <p class="description">
+                          If you love a person's design, give it a star to show your appreciation!
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-5 mr-auto">
+                    <form class="form" method="" action="">
+                      <div class="form-group has-default">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">person</i>
+                            </span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Username...">
+                        </div>
+                      </div>
+                      <div class="form-group has-default">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">mail</i>
+                            </span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Email...">
+                        </div>
+                      </div>
+                      <div class="form-group has-default">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">lock_outline</i>
+                            </span>
+                          </div>
+                          <input type="password" placeholder="Password..." class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" value="" checked="">
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                          I agree to the
+                          <a href="#something">terms and conditions</a>.
+                        </label>
+                      </div>
+                      <div class="text-center">
+                        <a href="#pablo" class="btn btn-primary btn-round mt-4">Get Started</a>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  
-
-<?php require_once("includes/footer.php") ?>
+  <?php require_once("includes/footer.php") ?>
 
   <script>
     $(document).ready(function() {
@@ -258,9 +300,8 @@
   <script>
     $(document).ready(function() {
       md.checkFullPageBackgroundImage();
-      setTimeout(function() {
-        // after 1000 ms we add the class animated to the login/register card
-        $('.card').removeClass('card-hidden');
-      }, 700);
     });
   </script>
+</body>
+
+</html>
