@@ -4,13 +4,49 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/conn.php");
 
 $errors = [];
 
-echo "<pre>";
-print_r($_SERVER);
-print_r($_POST);
+// echo "<pre>";
+// print_r($_SERVER);
+// print_r($_POST);
 
-// if (isset($_POST["action"]) && $_POST["action"] == "login"):
+if (isset($_POST["action"]) && $_POST["action"] == "login"):
+    
+    if (
+        (isset($_POST["username"]) && $_POST["username"] != "") &&
+        (isset($_POST["password"]) && $_POST["password"] != "")
+    ) {
+        $username = $_POST["username"];
+        $hashed_password = md5($_POST["password"]);
 
-if (isset($_POST["action"]) && $_POST["action"] == "register"):
+        $login_query = "SELECT * FROM users 
+                        WHERE username = '".$username."'
+                        AND password = '".$hashed_password."'
+                        LIMIT 1";
+
+        $login_result = mysqli_query($conn, $login_query);
+
+        if (mysqli_num_rows($login_result) > 0) {
+            while ($user = mysqli_fetch_array($login_result)) {
+
+                session_destroy();
+                session_start();
+
+                $_SESSION["username"] = $user["username"];
+                $_SESSION["role"]     = $user["role"];
+                $_SESSION["user_id"]  = $user["id"];
+
+                print_r($_SESSION);
+
+                header("Location: http://" . $_SERVER["SERVER_NAME"]);
+                
+            }
+        } else {
+            $errors[] = "Username or Password are incorrect.";
+        }
+    } else {
+        $errors[] = "Please fill out both fields.";
+    }
+
+elseif (isset($_POST["action"]) && $_POST["action"] == "register"):
     $username  = $_POST["username"];
     $email     = $_POST["email"];
     $password  = $_POST["password"];
@@ -58,6 +94,10 @@ if (isset($_POST["action"]) && $_POST["action"] == "register"):
 
 
 
+elseif (isset($_POST["action"]) && $_POST["action"] == "logout"):
+    session_destroy();
+
+    header("Location: http://" . $_SERVER["SERVER_NAME"]);
 
 
 endif;

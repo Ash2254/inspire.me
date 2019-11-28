@@ -21,7 +21,7 @@
             </a>
           </li>
           <li class="nav-item  active ">
-            <a href="../pages/register.html" class="nav-link">
+            <a href="register.php" class="nav-link">
               <i class="material-icons">person_add</i> Register
             </a>
           </li>
@@ -72,7 +72,7 @@
                     </div>
                   </div>
                   <div class="col-md-5 mr-auto">
-                    <form class="form" method="POST" action="actions/login_action.php" id="register">
+                    <form class="form" method="POST" action="actions/logins.php" id="register">
                       <div class="form-group has-default">
                         <div class="input-group">
                           <div class="input-group-prepend">

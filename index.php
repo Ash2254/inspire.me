@@ -18,6 +18,7 @@
       </div>
       <div class="sidebar-wrapper">
         <div class="user">
+          <?php if(isset($_SESSION["user_id"])): ?>
           <div class="photo">
             <img src="../../assets/img/faces/avatar.jpg"/>
           </div>
@@ -51,7 +52,18 @@
               </ul>
             </div>
           </div>
+          <?php else: ?>
+          <ul class="nav">
+            <li class="nav-item">
+              <a type="submit" href="/login.php" class="nav-link">
+                <i class="material-icons">fingerprint</i>
+                <p>Log In</p>
+              </a>
+            </li>
+          </ul>
+          <?php endif; ?>
         </div>
+
         <ul class="nav">
           <li class="nav-item ">
             <a class="nav-link" href="../../examples/dashboard.html">
@@ -357,7 +369,10 @@
                   <a class="dropdown-item" href="#">Profile</a>
                   <a class="dropdown-item" href="#">Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Log out</a>
+                  <form action="actions/logins.php" method="POST" id="logout">
+                    <input type="hidden" name="action" value="logout">
+                    <a class="dropdown-item" href="javascript:$('#logout').submit();">Log out</a>
+                  </form>
                 </div>
               </li>
             </ul>
