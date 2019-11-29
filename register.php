@@ -36,8 +36,6 @@
   </nav>
   <!-- End Navbar -->
 
-  <?php include($_SERVER["DOCUMENT_ROOT"]."includes/error_check.php"); ?>
-
   <div class="wrapper wrapper-full-page">
     <div class="page-header register-page header-filter" filter-color="black" style="background-image: url('/assets/img/login.jpg')">
       <div class="container">
@@ -138,6 +136,8 @@
   </div>
 
   <?php require_once("includes/footer.php") ?>
+
+  <?php require_once("includes/error_check.php"); ?>
 
 
 </body>

@@ -84,24 +84,7 @@
 
 <?php require_once("includes/footer.php") ?>
 
-<?php
-  if(isset($_GET["errors"])) {
-    foreach ($_GET["errors"] as $error) {
-      ?>
-      <script>
-        $.notify({
-          icon: "warning",
-          message: "<?=$error?>"
-        },{
-          type: 'danger'
-        });
-      </script>
-      <?php
-    }
-  }
-?>
-
-?>
+<?php require_once("includes/error_check.php") ?>
 
   <script>
     $(document).ready(function() {

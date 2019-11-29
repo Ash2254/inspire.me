@@ -1,8 +1,17 @@
 <?php
 if(isset($_GET["errors"])) {
     foreach($_GET["errors"] as $error) {
-        echo "<div class='alert alert-danger'>".$error."</div>";
+        ?>
+        <script>
+          $.notify({
+            icon: "warning",
+            message: "<?=$error?>"
+          },{
+            type: 'danger',
+            delay: 20000
+          });
+        </script>
+        <?php
     }
 }
-
 ?>

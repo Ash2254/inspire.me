@@ -55,9 +55,15 @@
           <?php else: ?>
           <ul class="nav">
             <li class="nav-item">
-              <a type="submit" href="/login.php" class="nav-link">
+              <a class="nav-link" href="/login.php">
                 <i class="material-icons">fingerprint</i>
-                <p>Log In</p>
+                <p> Log In </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/register.php">
+                <i class="material-icons">person_add</i>
+                <p> Register </p>
               </a>
             </li>
           </ul>
@@ -366,6 +372,7 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <?php if (isset($_SESSION["user_id"])): ?>
                   <a class="dropdown-item" href="#">Profile</a>
                   <a class="dropdown-item" href="#">Settings</a>
                   <div class="dropdown-divider"></div>
@@ -373,7 +380,12 @@
                     <input type="hidden" name="action" value="logout">
                     <a class="dropdown-item" href="javascript:$('#logout').submit();">Log out</a>
                   </form>
+                  <?php else: ?>
+                  <a href="/login.php" class="dropdown-item">Log In</a>
+                  <a href="/register.php" class="dropdown-item">Register</a>
+                  <?php endif; ?>
                 </div>
+
               </li>
             </ul>
           </div>
