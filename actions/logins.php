@@ -8,7 +8,7 @@ $errors = [];
 // print_r($_SERVER);
 // print_r($_POST);
 
-if (isset($_POST["action"]) && $_POST["action"] == "login"):
+if (isset($_POST["action"]) && $_POST["action"] == "login") {
     
     if (
         (isset($_POST["username"]) && $_POST["username"] != "") &&
@@ -46,66 +46,109 @@ if (isset($_POST["action"]) && $_POST["action"] == "login"):
         $errors[] = "Please fill out both fields.";
     }
 
-elseif (isset($_POST["action"]) && $_POST["action"] == "register"):
+
+
+    
+} elseif (isset($_POST["action"]) && $_POST["action"] == "register") {
     $username  = $_POST["username"];
     $email     = $_POST["email"];
     $password  = $_POST["password"];
     $password2 = $_POST["password2"];
 
-    if (strlen($password) > 7) {
-        if ($password == $password2) {
-            if (isset($_POST["agree_terms"])) {
-                if($username != "" && $email != "") {
-                    $hashed_password = md5($password);
+    if (strlen($username) < 3)          $errors[] = "Username must be 3 or more characters.";
+    if ($email == "")                   $errors[] = "Please fill out your email.";
+    if (strlen($password) < 8)          $errors[] = "Your password must be a minimum of 8 characters.";
+    if ($password != $password2)        $errors[] = "Your passwords do not match.";
+    if (!isset($_POST["agree_terms"]))  $errors[] = "You must agree to the Terms and Conditions.";
 
-                    $new_user_query = "INSERT INTO users (username, email, password, role) VALUES ('$username', '$email', '$hashed_password', 2)";
 
-                    if (!mysqli_query($conn, $new_user_query)) {
-                        echo mysqli_error($conn);
-                    } else {
-                        $user_id = mysqli_insert_id($conn);
+    if(empty($errors)) {
 
-                        session_destroy();
-                        session_start();
-
-                        $_SESSION["user_id"] = $user_id;
-                        $_SESSION["role"]    = 2;
-                        $_SESSION["username"]= $username;
-
-                        header("Location: http://".$_SERVER["SERVER_NAME"]);
-                    }
-
-                } else {
-                    $errors[] = "Please fill out all fields.";
-                }
-
-            } else {
-                $errors[] = "You must agree to the Terms and Conditions";
-            }
-
+        $hashed_password = md5($password);
+    
+        $new_user_query = "INSERT INTO users (username, email, password, role) VALUES ('$username', '$email', '$hashed_password', 2)";
+    
+        if (!mysqli_query($conn, $new_user_query)) {
+            echo mysqli_error($conn);
         } else {
-            $errors[] = "Your passwords do not match";
+            $user_id = mysqli_insert_id($conn);
+    
+            session_destroy();
+            session_start();
+    
+            $_SESSION["user_id"] = $user_id;
+            $_SESSION["role"]    = 2;
+            $_SESSION["username"]= $username;
+    
+            header("Location: http://".$_SERVER["SERVER_NAME"]);
         }
-
-    } else {
-        $errors[] = "Your password must be a minimum of 8 characters.";
+        
     }
 
 
-
-
-elseif (isset($_POST["action"]) && $_POST["action"] == "logout"):
+} elseif (isset($_POST["action"]) && $_POST["action"] == "logout") {
     session_destroy();
 
     header("Location: http://" . $_SERVER["SERVER_NAME"]);
 
 
-endif;
+}
 
 if (!empty($errors)) {
     $query = http_build_query(array("errors" => $errors));
     header("Location: " . strtok($_SERVER["HTTP_REFERER"], "?") . "?" . $query);
 
 }
+
+
+
+
+
+// elseif (isset($_POST["action"]) && $_POST["action"] == "register"):
+//     $username  = $_POST["username"];
+//     $email     = $_POST["email"];
+//     $password  = $_POST["password"];
+//     $password2 = $_POST["password2"];
+
+//     if (strlen($password) > 7) {
+//         if ($password == $password2) {
+//             if (isset($_POST["agree_terms"])) {
+//                 if($username != "" && $email != "") {
+//                     $hashed_password = md5($password);
+
+//                     $new_user_query = "INSERT INTO users (username, email, password, role) VALUES ('$username', '$email', '$hashed_password', 2)";
+
+//                     if (!mysqli_query($conn, $new_user_query)) {
+//                         echo mysqli_error($conn);
+//                     } else {
+//                         $user_id = mysqli_insert_id($conn);
+
+//                         session_destroy();
+//                         session_start();
+
+//                         $_SESSION["user_id"] = $user_id;
+//                         $_SESSION["role"]    = 2;
+//                         $_SESSION["username"]= $username;
+
+//                         header("Location: http://".$_SERVER["SERVER_NAME"]);
+//                     }
+
+//                 } else {
+//                     $errors[] = "Please fill out all fields.";
+//                 }
+
+//             } else {
+//                 $errors[] = "You must agree to the Terms and Conditions";
+//             }
+
+//         } else {
+//             $errors[] = "Your passwords do not match";
+//         }
+
+//     } else {
+//         $errors[] = "Your password must be a minimum of 8 characters.";
+//     }
+
+
 
 ?>
