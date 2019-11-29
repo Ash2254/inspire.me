@@ -4,7 +4,7 @@ if(isset($_GET["errors"])) {
         ?>
         <script>
           $.notify({
-            icon: "warning",
+            icon: "priority_high",
             message: "<?=$error?>"
           },{
             type: 'danger',

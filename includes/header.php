@@ -1,4 +1,4 @@
-<?php require_once("conn.php"); ?>
+<?php require_once($_SERVER["DOCUMENT_ROOT"]."/conn.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +12,7 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css'/>
 
     <!-- Material Dashboard CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
     <title>Title</title>
 </head>

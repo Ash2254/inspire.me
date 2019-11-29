@@ -55,11 +55,11 @@ if (isset($_POST["action"]) && $_POST["action"] == "login") {
     $password  = $_POST["password"];
     $password2 = $_POST["password2"];
 
-    if (strlen($username) < 3)          $errors[] = "Username must be 3 or more characters.";
-    if ($email == "")                   $errors[] = "Please fill out your email.";
-    if (strlen($password) < 8)          $errors[] = "Your password must be a minimum of 8 characters.";
-    if ($password != $password2)        $errors[] = "Your passwords do not match.";
-    if (!isset($_POST["agree_terms"]))  $errors[] = "You must agree to the Terms and Conditions.";
+    if (strlen($username) < 3)         $errors[] = "Username must be 3 or more characters.";
+    if ($email == "")                  $errors[] = "Please fill out your email.";
+    if (strlen($password) < 8)         $errors[] = "Your password must be a minimum of 8 characters.";
+    if ($password != $password2)       $errors[] = "Your passwords do not match.";
+    if (!isset($_POST["agree_terms"])) $errors[] = "You must agree to the Terms and Conditions.";
 
 
     if(empty($errors)) {
