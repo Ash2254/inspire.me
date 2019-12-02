@@ -2,17 +2,22 @@
 
 <?php
 
-// $user_id = (isset($_GET["user_id"])) ? $_GET["user_id"] : $_SESSION["user_id"];
+$user_id = (isset($_GET["user_id"])) ? $_GET["user_id"] : $_SESSION["user_id"];
 
-// $user_query = " SELECT users.*, images.url AS profile_pic 
-//                 FROM users 
-//                 LEFT JOIN images
-//                 ON users.profile_pic_id = images.id
-//                 WHERE users.id = " . $user_id;
+$user_query = " SELECT users.*, avatars.url AS avatar 
+                FROM users 
+                LEFT JOIN avatars
+                ON users.avatar_id = avatars.id
+                WHERE users.id = " . $user_id;
 
-// if ($user_request = mysqli_query($conn, $user_query)):
-//   while ($user_row = mysqli_fetch_array($user_request)):
+if ($user_request = mysqli_query($conn, $user_query)):
+  while ($user_row = mysqli_fetch_array($user_request)):
 
+    $username = $user_row["username"];
+    $email    = $user_row["email"];
+    $bio      = $user_row["bio"];
+    $avatar   = $user_row["avatar"];
+    // TODO: Banner
 
 ?>
 
@@ -39,13 +44,13 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating" for="username">Username</label>
-                          <input type="text" class="form-control" id="username" name="username">
+                          <input type="text" class="form-control" id="username" name="username" value="<?=$username?>">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating" for="email">Email address</label>
-                          <input type="email" class="form-control" id="email" name="email">
+                          <input type="email" class="form-control" id="email" name="email" value="<?=$email?>">
                         </div>
                       </div>
                     </div>
@@ -53,7 +58,7 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <label class="bmd-label-floating" for="bio">About Me</label>
-                          <textarea class="form-control" rows="5" id="bio" name="bio"></textarea>
+                          <textarea class="form-control" rows="5" id="bio" name="bio"></textarea value="<?=$bio?>">
                         </div>
                       </div>
                     </div>
@@ -110,10 +115,10 @@
                 </div>
 
                 <div class="card-body">
-                  <h6 class="card-category text-gray">CEO / Co-Founder</h6>
+                  <!-- <h6 class="card-category text-gray">CEO / Co-Founder</h6> -->
                   <h4 class="card-title"><?=$_SESSION["username"];?></h4>
                   <p class="card-description">
-                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                    <!-- TODO: Add description -->
                   </p>
                   <a href="#pablo" class="btn btn-rose btn-round">Follow</a>
                 </div>
@@ -125,8 +130,8 @@
     </div>
 
 <?php 
-  // endwhile; 
-// endif; 
+  endwhile; 
+endif; 
 ?>
 
 <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/footer.php"); ?>
