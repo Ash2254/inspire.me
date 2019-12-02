@@ -65,8 +65,10 @@ if (isset($_POST["action"]) && $_POST["action"] == "login") {
     if(empty($errors)) {
 
         $hashed_password = md5($password);
+
+        $date_created = date("Y-m-d H:i:s");
     
-        $new_user_query = "INSERT INTO users (username, email, password, role) VALUES ('$username', '$email', '$hashed_password', 2)";
+        $new_user_query = "INSERT INTO users (username, email, password, role, date_created) VALUES ('$username', '$email', '$hashed_password', 2, '$date_created')";
     
         if (!mysqli_query($conn, $new_user_query)) {
             echo mysqli_error($conn);
