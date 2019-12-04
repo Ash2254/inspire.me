@@ -55,7 +55,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
                         </div>
                       </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-3">
                       <div class="col-md-12">
                         <div class="form-group">
                           <label class="bmd-label-floating" for="bio">About Me</label>
