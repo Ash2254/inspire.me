@@ -64,11 +64,34 @@ if ($user_request = mysqli_query($conn, $user_query)):
                       </div>
                     </div>
                     <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="mr-3">I am a:</label>
+                          <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Web Developer
+                              <span class="form-check-sign">
+                                  <span class="check"></span>
+                              </span>
+                            </label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Graphic Designer
+                              <span class="form-check-sign">
+                                  <span class="check"></span>
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
                     <div class="col-md-6 text-center my-auto">
                       <h4 class="title">Avatar</h4>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                         <div class="fileinput-new thumbnail img-circle">
-                          <img src="<?=($avatar) ? $avatar : "/assets/img/placeholder.jpg"?>" alt="...">
+                          <img src="<?=($avatar) ? $avatar : "/assets/img/placeholder.jpg"?>">
                         </div>
                         <div class="fileinput-preview fileinput-exists thumbnail img-circle" style="width: 100px; height: 100px;"></div>
                         <div>
@@ -111,12 +134,15 @@ if ($user_request = mysqli_query($conn, $user_query)):
                 <img class="card-img-top" src="/assets/img/image_placeholder.jpg">
                 <div class="card-avatar">
                   <a href="#pablo">
-                    <img class="img" src="<?=($avatar) ? $avatar : "/assets/img/placeholder.jpg"?>" />
+                    <img class="img" src="<?=($avatar) ? $avatar : "/assets/img/placeholder.jpg"?>" alt="<?=$username?>'s Avatar"/>
                   </a>
                 </div>
 
                 <div class="card-body">
-                  <!-- <h6 class="card-category text-gray">CEO / Co-Founder</h6> -->
+                  <h6 class="card-category">
+                    <a href="#" class="badge badge-pill badge-info">Web Developer</a>
+                    <!-- TODO: Add new many-many? table for user tags. -->
+                  </h6>
                   <h4 class="card-title"><?=$_SESSION["username"];?></h4>
                   <p class="card-description">
                     <!-- TODO: Add description -->
