@@ -91,9 +91,9 @@ if ($user_request = mysqli_query($conn, $user_query)):
                       <h4 class="title">Avatar</h4>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                         <div class="fileinput-new thumbnail img-circle">
-                          <img src="<?=($avatar) ? $avatar : "/assets/img/placeholder.jpg"?>">
+                          <img src="<?=($avatar) ? $avatar : "/assets/img/placeholder.jpg"?>" style="width: 100px; height: 100px; object-fit: cover">
                         </div>
-                        <div class="fileinput-preview fileinput-exists thumbnail img-circle" style="width: 100px; height: 100px;"></div>
+                        <div class="fileinput-preview fileinput-exists thumbnail img-circle"></div>
                         <div>
                           <span class="btn btn-round btn-primary btn-file">
                             <span class="fileinput-new">Add Photo</span>
