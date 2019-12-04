@@ -45,7 +45,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
                         $insert_image_query = " INSERT INTO avatars 
                                                 (url, owner_id, date_uploaded)
                                                 VALUES
-                                                ('".str_replace($_SERVER["DOCUMENT_ROOT"], "", $file_name)."', $user_id, $date_uploaded)";
+                                                ('".str_replace($_SERVER["DOCUMENT_ROOT"], "", $file_name)."', $user_id, '$date_uploaded')";
 
                         if(mysqli_query($conn, $insert_image_query)) {
 
@@ -67,7 +67,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
                                 email       = '$email',
                                 username    = '$username',
                                 bio         = '$bio'";
-            $update_query .=    ($avatar_id != NULL) ? ",avatar_id  = $avatar_id" : "";
+            $update_query .=    ($avatar_id != NULL) ? ", avatar_id = $avatar_id" : "";
             $update_query .=    " WHERE id = $user_id";
 
             if (mysqli_query($conn, $update_query)) {

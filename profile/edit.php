@@ -68,7 +68,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
                       <h4 class="title">Avatar</h4>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                         <div class="fileinput-new thumbnail img-circle">
-                          <img src="/assets/img/placeholder.jpg" alt="...">
+                          <img src="<?=($avatar) ? $avatar : "/assets/img/placeholder.jpg"?>" alt="...">
                         </div>
                         <div class="fileinput-preview fileinput-exists thumbnail img-circle" style="width: 100px; height: 100px;"></div>
                         <div>
@@ -111,7 +111,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
                 <img class="card-img-top" src="/assets/img/image_placeholder.jpg">
                 <div class="card-avatar">
                   <a href="#pablo">
-                    <img class="img" src="/assets/img/placeholder.jpg" />
+                    <img class="img" src="<?=($avatar) ? $avatar : "/assets/img/placeholder.jpg"?>" />
                   </a>
                 </div>
 
