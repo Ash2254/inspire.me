@@ -39,7 +39,8 @@ if ($user_request = mysqli_query($conn, $user_query)):
                   <h4 class="card-title">Edit Profile</h4>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form action="/actions/edit_profile.php" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="user_id" value="<?=$user_row["id"];?>">
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
@@ -58,7 +59,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
                       <div class="col-md-12">
                         <div class="form-group">
                           <label class="bmd-label-floating" for="bio">About Me</label>
-                          <textarea class="form-control" rows="5" id="bio" name="bio"></textarea value="<?=$bio?>">
+                          <textarea class="form-control" rows="5" id="bio" name="bio" ><?=$bio?></textarea>
                         </div>
                       </div>
                     </div>
@@ -74,7 +75,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
                           <span class="btn btn-round btn-primary btn-file">
                             <span class="fileinput-new">Add Photo</span>
                             <span class="fileinput-exists">Change</span>
-                            <input type="file" name="..." />
+                            <input type="file" name="avatar" />
                           </span>
                           <br />
                           <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
@@ -92,14 +93,14 @@ if ($user_request = mysqli_query($conn, $user_query)):
                           <span class="btn btn-primary btn-round btn-file">
                             <span class="fileinput-new">Select image</span>
                             <span class="fileinput-exists">Change</span>
-                            <input type="file" name="..." />
+                            <input type="file" name="banner" />
                           </span>
                           <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                         </div>
                       </div>
                     </div>
                   </div>
-                    <button type="submit" class="btn btn-rose pull-right">Update Profile</button>
+                    <button type="submit" class="btn btn-rose pull-right" name="action" value="update">Update Profile</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
@@ -135,3 +136,4 @@ endif;
 ?>
 
 <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/footer.php"); ?>
+<?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/error_check.php"); ?>

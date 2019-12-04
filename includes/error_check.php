@@ -13,5 +13,17 @@ if(isset($_GET["errors"])) {
         </script>
         <?php
     }
+} elseif (isset($_GET["success"])) {
+    ?>
+    <script>
+      $.notify({
+        icon: "check",
+        message: "<?=$_GET["success"]?>"
+      },{
+        type: 'success',
+        delay: 20000
+      });
+    </script>
+    <?php
 }
 ?>
