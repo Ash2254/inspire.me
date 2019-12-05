@@ -56,6 +56,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
                     }
                 } else {
                     $errors[] = "File already exists.";
+                    // TODO: Better handle duplicate files
                 }
             } else {
                 $errors[] = "Invalid File.";
