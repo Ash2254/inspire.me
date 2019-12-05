@@ -139,13 +139,14 @@ if ($user_request = mysqli_query($conn, $user_query)):
                 </div>
 
                 <div class="card-body">
+                  <h4 class="card-title"><?=$_SESSION["username"];?></h4>
                   <h6 class="card-category">
                     <a href="#" class="badge badge-pill badge-info">Web Developer</a>
+                    <a href="#" class="badge badge-pill badge-warning">Graphic Designer</a>
                     <!-- TODO: Add new many-many? table for user tags. -->
                   </h6>
-                  <h4 class="card-title"><?=$_SESSION["username"];?></h4>
                   <p class="card-description">
-                    <!-- TODO: Add description -->
+                    <?=$bio?>
                   </p>
                   <a href="#pablo" class="btn btn-rose btn-round">Follow</a>
                 </div>

@@ -20,7 +20,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
         $user_id        = $_POST["user_id"];
         $username       = $_POST["username"];
         $email          = $_POST["email"];
-        $bio            = $_POST["bio"];
+        $bio            = htmlspecialchars($_POST["bio"], ENT_QUOTES);
         $avatar_id      = NULL;
         $banner_pic_id  = NULL;
 
