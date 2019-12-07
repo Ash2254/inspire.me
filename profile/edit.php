@@ -4,20 +4,37 @@
 
 $user_id = (isset($_GET["user_id"])) ? $_GET["user_id"] : $_SESSION["user_id"];
 
-$user_query = " SELECT users.*, avatars.url AS avatar 
+$user_query = " SELECT users.*, avatars.url AS avatar, banners.url AS banner
                 FROM users 
                 LEFT JOIN avatars
                 ON users.avatar_id = avatars.id
+                LEFT JOIN banners
+                ON users.banner_id = banners.id
                 WHERE users.id = " . $user_id;
+
+$tag_query  = " SELECT user_tags.*, tags.* FROM user_tags
+                LEFT JOIN tags
+                ON user_tags.tag_id = tags.id
+                WHERE user_tags.user_id = $user_id";
 
 if ($user_request = mysqli_query($conn, $user_query)):
   while ($user_row = mysqli_fetch_array($user_request)):
 
-    $username = $user_row["username"];
-    $email    = $user_row["email"];
-    $bio      = $user_row["bio"];
-    $avatar   = $user_row["avatar"];
-    // TODO: Banner
+    $tags = [];
+    $tag_ids = [];
+    
+    if ($tag_request = mysqli_query($conn, $tag_query)) {
+      while ($tag_row = mysqli_fetch_array($tag_request)) {
+        $tags[] = $tag_row["name"];
+        $tag_ids[] = $tag_row["id"];
+      }
+    }
+
+        $username = $user_row["username"];
+        $email    = $user_row["email"];
+        $bio      = $user_row["bio"];
+        $avatar   = $user_row["avatar"];
+        $banner   = $user_row["banner"];
 
 ?>
 
@@ -69,7 +86,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
                           <label class="mr-3">I am a:</label>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Web Developer
+                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="tags[]" value="1" <?=(in_array(1, $tag_ids)) ? "checked" : false ?>> Web Developer
                               <span class="form-check-sign">
                                   <span class="check"></span>
                               </span>
@@ -77,7 +94,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
                           </div>
                           <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Graphic Designer
+                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="tags[]" value="2" <?=(in_array(2, $tag_ids)) ? "checked" : false ?>> Graphic Designer
                               <span class="form-check-sign">
                                   <span class="check"></span>
                               </span>
@@ -109,7 +126,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
                       <h4 class="title">Banner Image</h4>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                         <div class="fileinput-new thumbnail">
-                          <img src="/assets/img/image_placeholder.jpg" alt="...">
+                          <img src="<?=($banner) ? $banner : "/assets/img/image_placeholder.jpg"?>">
                         </div>
                         <div class="fileinput-preview fileinput-exists thumbnail"></div>
                         <div>
@@ -131,7 +148,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
             </div>
             <div class="col-md-4">
               <div class="card card-profile">
-                <img class="card-img-top" src="/assets/img/image_placeholder.jpg">
+                <?=($banner) ? "<img class=\"card-img-top\" src=\"$banner\">" : false ?>
                 <div class="card-avatar">
                   <a href="#pablo">
                     <img class="img" src="<?=($avatar) ? $avatar : "/assets/img/placeholder.jpg"?>" alt="<?=$username?>'s Avatar"/>
@@ -141,9 +158,28 @@ if ($user_request = mysqli_query($conn, $user_query)):
                 <div class="card-body">
                   <h4 class="card-title"><?=$_SESSION["username"];?></h4>
                   <h6 class="card-category">
-                    <a href="#" class="badge badge-pill badge-info">Web Developer</a>
-                    <a href="#" class="badge badge-pill badge-warning">Graphic Designer</a>
-                    <!-- TODO: Add new many-many? table for user tags. -->
+                    <?php 
+                    foreach($tags as $tag) {
+                      $output = "<a href=\"#\" class=\"badge badge-pill badge-";
+
+                      switch ($tag) {
+                        case 'Web Developer':
+                          $output .= "info\">";
+                          break;
+                        
+                        case 'Graphic Designer':
+                          $output .= "warning\">";
+                          break;
+                        default:
+                          $output .= "primary\">";
+                          break;
+                      }
+
+                      $output .= $tag."</a> ";
+
+                      echo $output;
+                    }
+                    ?>
                   </h6>
                   <p class="card-description">
                     <?=$bio?>
@@ -158,8 +194,10 @@ if ($user_request = mysqli_query($conn, $user_query)):
     </div>
 
 <?php 
+    //   endwhile; 
+    // endif; // Tags
   endwhile; 
-endif; 
+endif; // User
 ?>
 
 <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/footer.php"); ?>
