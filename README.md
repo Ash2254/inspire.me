@@ -2,4 +2,4 @@
 
  SSP Major Project
 
-## Too bad someone already took the domain ¯\_(ツ)_/¯
+## Too bad someone already took the domain ¯\\_(ツ)_/¯
