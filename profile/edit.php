@@ -158,33 +158,12 @@ if ($user_request = mysqli_query($conn, $user_query)):
                 <div class="card-body">
                   <h4 class="card-title"><?=$_SESSION["username"];?></h4>
                   <h6 class="card-category">
-                    <?php 
-                    foreach($tags as $tag) {
-                      $output = "<a href=\"#\" class=\"badge badge-pill badge-";
-
-                      switch ($tag) {
-                        case 'Web Developer':
-                          $output .= "info\">";
-                          break;
-                        
-                        case 'Graphic Designer':
-                          $output .= "warning\">";
-                          break;
-                        default:
-                          $output .= "primary\">";
-                          break;
-                      }
-
-                      $output .= $tag."</a> ";
-
-                      echo $output;
-                    }
-                    ?>
+                    <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/tags.php"); ?>
                   </h6>
                   <p class="card-description">
                     <?=$bio?>
                   </p>
-                  <a href="#pablo" class="btn btn-rose btn-round">Follow</a>
+                  <a href="#pablo" class="btn btn-rose btn-round">View Profile</a>
                 </div>
               </div>
             </div>

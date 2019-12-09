@@ -40,6 +40,23 @@
     <script src="/assets/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="/assets/js/material-dashboard.js?v=2.1.0" type="text/javascript"></script>
+    <script>
+    // NAV CURRENT PAGE SELECTOR
+    function navHighlight(elem, home, active) {
+        var url = location.href.split('/'),
+            loc = url[url.length -1],
+            link = document.querySelectorAll(elem);
+        for (var i = 0; i < link.length; i++) {
+            var path = link[i].href.split('/'),
+                page = path[path.length -1];
+            if (page == loc || page == home && loc == '') {
+                link[i].parentNode.className += ' ' + active;
+                document.body.className += ' ' + page.substr(0, page.lastIndexOf('.'));
+                }
+            }
+        }
+    navHighlight('a.nav-link', 'index.php', 'active'); /* menu link selector, home page, highlight class */
+</script>
 </body>
 
 </html>
