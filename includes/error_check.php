@@ -21,7 +21,7 @@ if(isset($_GET["errors"])) {
         message: "<?=$_GET["success"]?>"
       },{
         type: 'success',
-        delay: 20000
+        delay: 5000
       });
     </script>
     <?php
