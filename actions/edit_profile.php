@@ -59,7 +59,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
 
 
         // !!!!!!!!!!! //
-        // ! AVATARS ! //
+        // ! BANNERS ! //
         // !!!!!!!!!!! //
         if ((empty($errors)) && isset($_FILES["banner"]) && $_FILES["banner"]["error"] == 0) {
             if (
