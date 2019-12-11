@@ -51,6 +51,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
 
                     <div class="row">
                         <div class="col-12">
+                            <!-- SECTION profile card -->
                             <div class="card card-profile">
 
                                 <div class="card-header card-header-primary text-center">
@@ -74,12 +75,13 @@ if ($user_request = mysqli_query($conn, $user_query)):
                                 </div>
 
                             </div>
+                            <!-- !SECTION profile card -->
 
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4">
-                            <!-- BEGIN CARD -->
+                            <!-- SECTION post cards -->
                             <div class="card card-product">
                                 <div class="card-header card-header-image" data-header-animation="true">
                                     <a href="#pablo">
@@ -118,7 +120,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
                                     </div>
                                 </div>
                             </div>
-                            <!-- END CARD -->
+                            <!-- !SECTION post cards -->
                         </div>
                     </div>
 

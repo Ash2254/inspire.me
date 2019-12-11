@@ -28,6 +28,9 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
         if ($email == "")          $errors[] = "Please fill out your email.";
 
         // SECTION tags
+
+        $delete_tags_query = "DELETE FROM user_tags WHERE user_id = $user_id";
+        mysqli_query($conn, $delete_tags_query);
         if((empty($errors)) && isset($_POST["tags"])) {
             
             foreach ($_POST["tags"] as $tag_id) {
@@ -166,6 +169,37 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
     }
 }
 // !SECTION update
+
+// SECTION delete
+elseif (isset($_POST["action"]) && $_POST["action"] == "delete") {
+    $user_id = $_POST["user_id"];
+
+    $delete_query = "DELETE FROM users WHERE id = $user_id";
+    $select_query = "SELECT * FROM users WHERE id = $user_id";
+
+    if ($user_result = mysqli_query($conn, $select_query)) {
+        while ($user_row = mysqli_fetch_array($user_result)) {
+            if ($user_row["role"] != 1) {
+                if(mysqli_query($conn, $delete_query)) {
+                    if ($user_row["id"] == $_SESSION["user_id"]) {
+                        session_destroy();
+                        header("Location: http://".$_SERVER["SERVER_NAME"]);
+                    } else {
+                        header("Location: http://".$_SERVER["SERVER_NAME"]."/members.php");
+                    }
+                } else {
+                    $errors[] = mysqli_error($conn);
+                }
+            } else {
+                $errors[] = "This user cannot be deleted.";
+            }
+        }
+
+    } else {
+        $errors[] = "User does not exist: ". mysqli_error($conn);
+    }
+}
+// !SECTION delete
 
 if (!empty($errors)) {
     $query = http_build_query(array("errors" => $errors));

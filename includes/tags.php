@@ -1,4 +1,5 @@
 <?php 
+// ANCHOR tags include
 foreach($tags as $tag) {
 $output = "<a href=\"#\" class=\"badge badge-pill badge-";
 

@@ -1,7 +1,7 @@
 <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/header.php"); ?>
 
 <?php
-
+// SECTION users query
 $user_id = (isset($_GET["user_id"])) ? $_GET["user_id"] : $_SESSION["user_id"];
 
 $user_query = " SELECT users.*, avatars.url AS avatar, banners.url AS banner
@@ -35,7 +35,7 @@ $tag_query  = " SELECT user_tags.*, tags.* FROM user_tags
 //         $bio      = $user_row["bio"];
 //         $avatar   = $user_row["avatar"];
 //         $banner   = $user_row["banner"];
-
+// !SECTION users query
 ?>
 
 <body class="">

@@ -57,7 +57,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
                 </div>
                 <div class="card-body">
                   <!-- SECTION edit form -->
-                  <form action="/actions/edit_profile.php" method="POST" enctype="multipart/form-data">
+                  <form action="/actions/edit_profile.php" method="POST" enctype="multipart/form-data" id="edit">
                     <input type="hidden" name="user_id" value="<?=$user_row["id"];?>">
                     <div class="row">
                       <div class="col-md-6">
@@ -191,30 +191,70 @@ endif; // User
 <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/error_check.php"); ?>
 
 <script>
-// FIXME modal wont work with customClass property
-$("button#delete").click(function(e) {
+$("button#delete").click(function (e) { 
   e.preventDefault();
+  
+  const deleteAccountSwal = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-danger',
+      cancelButton: 'btn btn-secondary'
+    },
+    buttonsStyling: false
+  })
 
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
+  deleteAccountSwal.fire({
+    title: 'Are you sure you would like to delete your account?',
+    text: "This action is irreversible.",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
     confirmButtonText: 'Yes, delete it!',
-    customClass: {
-      confirmButton: 'btn btn-success',
-      cancelButton: 'btn btn-danger'
-    }
+    cancelButtonText: 'No, cancel!',
+    reverseButtons: true
   }).then((result) => {
     if (result.value) {
-      Swal.fire(
-        'Deleted!',
-        'Your file has been deleted.',
-        'success'
+      deleteAccountSwal.fire({
+        title: 'Are you completely sure you want to permanently delete your account?',
+        text: 'If so, please type "delete" below.',
+        icon: 'warning',
+        input: 'text',
+        showCancelButton: true,
+        reverseButtons: true,
+        confirmButtonText: 'Delete My Account',
+        inputValidator: (value) => {
+          if (value === "delete") {
+            var user_id = $("input:hidden[name=user_id]").val();
+            console.log(user_id);
+            $.ajax({
+              type: "POST",
+              url: "/actions/edit_profile.php",
+              data: {action: "delete", user_id: user_id}
+
+                
+
+            }).done(function() {
+              window.location.href = "/";
+            })
+          } else {
+            return 'You did not type "delete".'
+          }
+        }
+      }).then((result) => {
+        if (result.dismiss === Swal.DismissReason.cancel) {
+          deleteAccountSwal.fire(
+            'Cancelled',
+            'Your account has not been deleted.',
+            'error'
+          )
+        }
+      })
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      deleteAccountSwal.fire(
+        'Cancelled',
+        'Your account has not been deleted.',
+        'error'
       )
     }
   })
-})
+
+});
 </script>

@@ -8,9 +8,9 @@ if (isset($_SESSION["user_id"])):
                   WHERE users.id = " . $_SESSION["user_id"];
               
   if ($user_request = mysqli_query($conn, $user_query)):
-    while ($user_row = mysqli_fetch_array($user_request)):
-      $username = $user_row["username"];
-      $avatar   = $user_row["avatar"];
+    while ($sidebar_user_row = mysqli_fetch_array($user_request)):
+      $username = $sidebar_user_row["username"];
+      $avatar   = $sidebar_user_row["avatar"];
 
     endwhile;
   endif;
