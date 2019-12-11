@@ -1,7 +1,7 @@
 <?php require_once("includes/header.php") ?>
-
+<!-- SECTION register -->
 <body class="off-canvas-sidebar">
-  <!-- Navbar -->
+  <!-- SECTION navbar -->
   <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
     <div class="container">
       <div class="navbar-wrapper">
@@ -34,7 +34,7 @@
       </div>
     </div>
   </nav>
-  <!-- End Navbar -->
+  <!-- !SECTION navbar -->
 
   <div class="wrapper wrapper-full-page">
     <div class="page-header register-page header-filter" filter-color="black" style="background-image: url('/assets/img/login.jpg')">
@@ -70,6 +70,7 @@
                     </div>
                   </div>
                   <div class="col-md-5 mr-auto">
+                    <!-- SECTION register form -->
                     <form class="form" method="POST" action="actions/logins.php" id="register">
                       <div class="form-group has-default">
                         <div class="input-group">
@@ -125,6 +126,7 @@
                         <button type="submit" class="btn btn-primary btn-round mt-4" name="action" value="register">Get Started</button>
                       </div>
                     </form>
+                    <!-- !SECTION register form -->
                   </div>
                 </div>
               </div>
@@ -138,8 +140,4 @@
   <?php require_once("includes/footer.php") ?>
 
   <?php require_once("includes/error_check.php"); ?>
-
-
-</body>
-
-</html>
+<!-- !SECTION register  -->

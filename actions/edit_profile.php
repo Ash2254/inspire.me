@@ -12,7 +12,7 @@ $errors = [];
 // print_r($_FILES);
 // exit;
 
-
+// SECTION update
 if (isset($_POST["action"]) && $_POST["action"] == "update") {
 
     if(isset($_SESSION["user_id"]) && ($_SESSION["user_id"] == $_POST["user_id"]) || $_SESSION["role"] == 1) {
@@ -27,9 +27,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
         if (strlen($username) < 3) $errors[] = "Username must be 3 or more characters.";
         if ($email == "")          $errors[] = "Please fill out your email.";
 
-        // !!!!!!!! //
-        // ! TAGS ! //
-        // !!!!!!!! //
+        // SECTION tags
         if((empty($errors)) && isset($_POST["tags"])) {
             
             foreach ($_POST["tags"] as $tag_id) {
@@ -56,11 +54,10 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
             }
 
         }
+        // !SECTION tags
 
 
-        // !!!!!!!!!!! //
-        // ! AVATARS ! //
-        // !!!!!!!!!!! //
+        // SECTION banners
         if ((empty($errors)) && isset($_FILES["banner"]) && $_FILES["banner"]["error"] == 0) {
             if (
                 ($_FILES["banner"]["type"] == "image/jpeg" ||
@@ -96,16 +93,14 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
                     }
                 } else {
                     $errors[] = "File already exists.";
-                    // TODO: Better handle duplicate files
                 }
             } else {
                 $errors[] = "Invalid File.";
             }
         }
+        // !SECTION banners
 
-        // !!!!!!!!!!! //
-        // ! AVATARS ! //
-        // !!!!!!!!!!! //
+        // SECTION avatars
         if ((empty($errors)) && isset($_FILES["avatar"]) && $_FILES["avatar"]["error"] == 0) {
             if (
                 ($_FILES["avatar"]["type"] == "image/jpeg" ||
@@ -141,16 +136,14 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
                     }
                 } else {
                     $errors[] = "File already exists.";
-                    // TODO: Better handle duplicate files
                 }
             } else {
                 $errors[] = "Invalid File.";
             }
         }
+        // !SECTION avatars
 
-        // !!!!!!!! //
-        // ! USER ! //
-        // !!!!!!!! //
+        // SECTION update user
         if (empty($errors)) {
             $update_query = "   UPDATE users SET
                                 email       = '$email',
@@ -166,14 +159,13 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
                 $errors[] = mysqli_error($conn);
             }
         }
+        // !SECTION update user
         
     } else {
         $errors[] = "You do not have permission to edit this user.";
     }
-
-
-
 }
+// !SECTION update
 
 if (!empty($errors)) {
     $query = http_build_query(array("errors" => $errors));

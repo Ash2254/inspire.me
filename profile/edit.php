@@ -1,7 +1,7 @@
 <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/header.php"); ?>
 
 <?php
-
+// SECTION user query
 $user_id = (isset($_GET["user_id"])) ? $_GET["user_id"] : $_SESSION["user_id"];
 
 $user_query = " SELECT users.*, avatars.url AS avatar, banners.url AS banner
@@ -35,7 +35,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
         $bio      = $user_row["bio"];
         $avatar   = $user_row["avatar"];
         $banner   = $user_row["banner"];
-
+// !SECTION user query
 ?>
 
 <body class="">
@@ -56,6 +56,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
                   <h4 class="card-title">Edit Profile</h4>
                 </div>
                 <div class="card-body">
+                  <!-- SECTION edit form -->
                   <form action="/actions/edit_profile.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="user_id" value="<?=$user_row["id"];?>">
                     <div class="row">
@@ -143,10 +144,12 @@ if ($user_request = mysqli_query($conn, $user_query)):
                     <button type="submit" class="btn btn-rose pull-right" name="action" value="update">Update Profile</button>
                     <div class="clearfix"></div>
                   </form>
+                  <!-- !SECTION edit form -->
                 </div>
               </div>
             </div>
             <div class="col-md-4">
+              <!-- SECTION preview card -->
               <div class="card card-profile">
                 <?=($banner) ? "<img class=\"card-img-top\" src=\"$banner\">" : false ?>
                 <div class="card-avatar">
@@ -166,6 +169,13 @@ if ($user_request = mysqli_query($conn, $user_query)):
                   <a href="#pablo" class="btn btn-rose btn-round">View Profile</a>
                 </div>
               </div>
+              <!-- !SECTION preview card -->
+              <!-- ANCHOR delete account -->
+              <div class="card">
+                <div class="card-header">
+                  <button class="btn btn-danger" id="delete">Delete Account</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -173,11 +183,38 @@ if ($user_request = mysqli_query($conn, $user_query)):
     </div>
 
 <?php 
-    //   endwhile; 
-    // endif; // Tags
   endwhile; 
 endif; // User
 ?>
 
 <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/footer.php"); ?>
 <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/error_check.php"); ?>
+
+<script>
+// FIXME modal wont work with customClass property
+$("button#delete").click(function(e) {
+  e.preventDefault();
+
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!',
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    }
+  }).then((result) => {
+    if (result.value) {
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
+    }
+  })
+})
+</script>

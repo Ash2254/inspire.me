@@ -1,4 +1,5 @@
 <?php
+// ANCHOR errors
 if(isset($_GET["errors"])) {
     foreach($_GET["errors"] as $error) {
         ?>
@@ -13,6 +14,7 @@ if(isset($_GET["errors"])) {
         </script>
         <?php
     }
+// ANCHOR success
 } elseif (isset($_GET["success"])) {
     ?>
     <script>
