@@ -77,7 +77,21 @@ $tag_query  = " SELECT user_tags.*, tags.* FROM user_tags
                                 $banner = $user_row["banner"];
                                 $avatar = $user_row["avatar"];
                                 $username = $user_row["username"];
-                                $bio    = $user_row["bio"];
+                                $bio    = $user_row["bio"];      
+                                $tag_query  = " SELECT user_tags.*, tags.* FROM user_tags
+                                                LEFT JOIN tags
+                                                ON user_tags.tag_id = tags.id
+                                                WHERE user_tags.user_id = ".$user_row["id"];
+
+                                $tags = [];
+                                $tag_ids = [];
+
+                                if ($tag_request = mysqli_query($conn, $tag_query)) {
+                                    while ($tag_row = mysqli_fetch_array($tag_request)) {
+                                    $tags[] = $tag_row["name"];
+                                    $tag_ids[] = $tag_row["id"];
+                                    }
+                                }                       
                         ?>
                         <div class="col-md-4">
                             <div class="card card-profile">
@@ -92,12 +106,12 @@ $tag_query  = " SELECT user_tags.*, tags.* FROM user_tags
                                 <div class="card-body">
                                     <h4 class="card-title"><?=$username;?></h4>
                                     <h6 class="card-category">
-                                        <!-- TAGS -->
+                                        <?php include("includes/tags.php"); ?>
                                     </h6>
                                     <p class="card-description">
                                         <?=$bio?>
                                     </p>
-                                    <a href="#pablo" class="btn btn-rose btn-round">View Profile</a>
+                                    <a href="profile/view.php?user_id=<?=$user_row["id"]?>" class="btn btn-rose btn-round">View Profile</a>
                                 </div>
                             </div>
                         </div>
