@@ -170,9 +170,16 @@ if ($user_request = mysqli_query($conn, $user_query)):
                 </div>
               </div>
               <!-- !SECTION preview card -->
-              <!-- ANCHOR delete account -->
+              <!-- ANCHOR change password and delete account -->
               <div class="card">
-                <div class="card-header">
+                <div class="card-header card-header-icon card-header-danger">
+                  <div class="card-icon">
+                    <i class="material-icons">warning</i>
+                  </div>
+
+                </div>
+                <div class="card-body">
+                  <button class="btn btn-warning" id="changePassword">Change Password</button>
                   <button class="btn btn-danger" id="delete">Delete Account</button>
                 </div>
               </div>
@@ -191,6 +198,7 @@ endif; // User
 <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/error_check.php"); ?>
 
 <script>
+// ANCHOR delete SWAL
 $("button#delete").click(function (e) { 
   e.preventDefault();
   
@@ -223,13 +231,10 @@ $("button#delete").click(function (e) {
         inputValidator: (value) => {
           if (value === "delete") {
             var user_id = $("input:hidden[name=user_id]").val();
-            console.log(user_id);
             $.ajax({
               type: "POST",
               url: "/actions/edit_profile.php",
               data: {action: "delete", user_id: user_id}
-
-                
 
             }).done(function() {
               window.location.href = "/";
@@ -257,4 +262,48 @@ $("button#delete").click(function (e) {
   })
 
 });
+
+// ANCHOR changePassword SWAL
+// FIXME change password
+// $("button#changePassword").click(function(e) {
+//   e.preventDefault();
+
+//   const changePasswordSwal = Swal.mixin({
+//     input: 'password',
+//     confirmButtonText: 'Next &rarr;',
+//     showCancelButton: true,
+//     progressSteps: ['1', '2', '3'],
+//     customClass: {
+//       confirmButton: 'btn btn-primary',
+//       cancelButton: 'btn btn-secondary'
+//     },
+//     buttonsStyling: false,
+//     reverseButtons: true
+//   })
+//   changePasswordSwal.queue([
+//     'Current Password',
+//     'New Password',
+//     {
+//       title: 'Confirm New Password',
+//       confirmButtonText: 'Update Password'
+//     }
+//   ]).then((result) => {
+//     var user_id = $("input:hidden[name=user_id]").val();
+//     $.ajax({
+//       type: "POST",
+//       url: "/actions/edit_profile.php",
+//       data: {
+//               action: "change_password", 
+//               user_id: user_id, 
+//               old_password: result.value[0],
+//               new_password: result.value[1],
+//               new_password2: result.value[2]
+//             }
+
+//     }).done(function() {
+//       // window.location.href = "/";
+//     });
+//   });
+
+// });
 </script>

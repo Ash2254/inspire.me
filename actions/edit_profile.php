@@ -27,8 +27,8 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
         if (strlen($username) < 3) $errors[] = "Username must be 3 or more characters.";
         if ($email == "")          $errors[] = "Please fill out your email.";
 
+        
         // SECTION tags
-
         $delete_tags_query = "DELETE FROM user_tags WHERE user_id = $user_id";
         mysqli_query($conn, $delete_tags_query);
         if((empty($errors)) && isset($_POST["tags"])) {
@@ -200,6 +200,45 @@ elseif (isset($_POST["action"]) && $_POST["action"] == "delete") {
     }
 }
 // !SECTION delete
+
+// SECTION change password
+elseif (isset($_POST["action"]) && $_POST["action"] == "change_password") {
+    // * select current user and check if current password matches
+        // * check if new passwords match
+            // * update user
+    echo '<pre>';
+    print_r($_POST);
+    exit;
+    // FIXME update to work with modal
+    $user_id            = $_POST["user_id"];
+    $current_password   = md5($_POST["password"]);
+    $new_password       = md5($_POST["new_password"]);
+    $new_password2      = md5($_POST["new_password2"]); 
+
+    $select_query = "   SELECT * FROM users 
+                        WHERE id = $user_id
+                        AND password = '$current_password'";
+
+    $select_result = mysqli_query($conn, $select_query);
+    if (mysqli_num_rows($select_result) > 0) {
+        if ($new_password == $new_password2) {
+            $update_query = "   UPDATE users 
+                                SET password = '$new_password' 
+                                WHERE id = $user_id";
+
+            if (mysqli_query($conn, $update_query)) {
+                header("Location: http://".$_SERVER["SERVER_NAME"]."/profile.php?success=Password+Updated");
+            } else {
+                $errors[] = "Something went wrong: " . mysqli_error($conn);
+            }
+        } else {
+            $errors[] = "New passwords do not match.";
+        }
+    } else {
+        $errors[] = "Current password is incorrect " . mysqli_error($conn);
+    }
+}
+// !SECTION change password
 
 if (!empty($errors)) {
     $query = http_build_query(array("errors" => $errors));
