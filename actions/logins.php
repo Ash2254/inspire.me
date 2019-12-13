@@ -37,7 +37,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "login") {
 
                 print_r($_SESSION);
 
-                header("Location: http://" . $_SERVER["SERVER_NAME"]);
+                header("Location: " . $_SERVER["HTTP_REFERER"]);
                 
             }
         } else {
@@ -83,7 +83,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "login") {
             $_SESSION["role"]    = 2;
             $_SESSION["username"]= $username;
     
-            header("Location: http://".$_SERVER["SERVER_NAME"]);
+            header("Location: ".$_SERVER["HTTP_REFERER"]);
         }
         
     }

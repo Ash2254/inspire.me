@@ -176,6 +176,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
                   <div class="card-icon">
                     <i class="material-icons">warning</i>
                   </div>
+                  <h4 class="card-title">Scary Buttons</h4>
 
                 </div>
                 <div class="card-body">
