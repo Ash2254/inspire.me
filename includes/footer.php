@@ -57,6 +57,7 @@
         }
     navHighlight('a.nav-link', 'index.php', 'active'); /* menu link selector, home page, highlight class */
 </script>
+<?php require_once("login_register.php"); ?>
 </body>
 
 </html>

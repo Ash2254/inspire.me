@@ -54,8 +54,8 @@
                             <a class="dropdown-item" href="javascript:$('#logout').submit();">Log out</a>
                         </form>
                         <?php else: ?>
-                        <a href="/login.php" class="dropdown-item">Log In</a>
-                        <a href="/register.php" class="dropdown-item">Register</a>
+                        <a href="#" data-toggle="modal" data-target="#loginModal" class="dropdown-item">Log In</a>
+                        <a href="#" data-toggle="modal" data-target="#registerModal" class="dropdown-item">Register</a>
                         <?php endif; ?>
                     </div>
 

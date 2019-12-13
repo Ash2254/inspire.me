@@ -73,13 +73,13 @@ endif;
             <?php else: ?>
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/login.php">
+                    <a class="nav-link" href="#" data-target="#loginModal" data-toggle="modal">
                         <i class="material-icons">fingerprint</i>
                         <p> Log In </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/register.php">
+                    <a class="nav-link" href="#" data-target="#registerModal" data-toggle="modal">
                         <i class="material-icons">person_add</i>
                         <p> Register </p>
                     </a>
