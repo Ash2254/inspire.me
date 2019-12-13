@@ -51,20 +51,26 @@ endif;
                     <ul class="nav">
                         <li class="nav-item">
                             <a class="nav-link" href="/profile/view.php">
-                                <span class="sidebar-mini"> MP </span>
+                                <span class="sidebar-mini"><i class="material-icons">person</i></span>
                                 <span class="sidebar-normal"> My Profile </span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/profile/edit.php">
-                                <span class="sidebar-mini"> EP </span>
+                                <span class="sidebar-mini"><i class="material-icons">edit</i></span>
                                 <span class="sidebar-normal"> Edit Profile </span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <span class="sidebar-mini"> S </span>
+                                <span class="sidebar-mini"><i class="material-icons">settings_applications</i></span>
                                 <span class="sidebar-normal"> Settings </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:$('#logout').submit();">
+                                <span class="sidebar-mini"><i class="material-icons">exit_to_app</i></span>
+                                <span class="sidebar-normal">Log out</span>
                             </a>
                         </li>
                     </ul>
@@ -88,7 +94,7 @@ endif;
             <?php endif; ?>
             <!-- !SECTION user -->
         </div>
-            
+
         <!-- SECTION nav -->
         <ul class="nav">
             <li class="nav-item">

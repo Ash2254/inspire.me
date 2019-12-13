@@ -29040,4 +29040,8 @@ select.selectpicker {
     display: none !important;
   }
 }
+
+.sidebar-mini {
+  margin-top: 2px;
+}
 /*# sourceMappingURL=style.css.map */
