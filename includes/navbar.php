@@ -29,10 +29,10 @@
             </form>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#pablo">
+                    <a class="nav-link" href="/">
                         <i class="material-icons">dashboard</i>
                         <p class="d-lg-none d-md-block">
-                            Stats
+                            Home
                         </p>
                     </a>
                 </li>
@@ -46,7 +46,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                         <?php if (isset($_SESSION["user_id"])): ?>
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="/profile/view.php">Profile</a>
                         <a class="dropdown-item" href="#">Settings</a>
                         <div class="dropdown-divider"></div>
                         <form action="/actions/logins.php" method="POST" id="logout">
