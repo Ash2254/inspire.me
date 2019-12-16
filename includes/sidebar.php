@@ -117,7 +117,7 @@ endif;
             </li>
             <hr>
             <li class="nav-item">
-                <a href="add_post.php" class="nav-link">
+                <a href="/posts/create.php" class="nav-link">
                     <i class="material-icons">add_post</i>
                     <p>Add Post</p>
                 </a>

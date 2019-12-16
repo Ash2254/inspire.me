@@ -42,7 +42,7 @@
                                                     <label for="post_description"
                                                         class="bmd-label-floating">Description</label>
                                                     <textarea name="post_description" id="post_description" cols="30"
-                                                        rows="10" class="form-control"></textarea>
+                                                        rows="15" class="form-control"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -55,20 +55,20 @@
                                         <h4 class="card-title">Post Image</h4>
                                     </div>
                                     <div class="card-body">
-                                        <div class="col-md-12 text-center">
+                                        <div class="col-md-12 text-center mt-3">
                                             <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                                 <div class="fileinput-new thumbnail">
                                                     <img src="/assets/img/image_placeholder.jpg">
                                                 </div>
-                                                <div class="fileinput-preview fileinput-exists thumbnail img-circle">
+                                                <div class="fileinput-preview fileinput-exists thumbnail">
                                                 </div>
                                                 <div>
                                                     <span class="btn btn-round btn-primary btn-file">
                                                         <span class="fileinput-new">Select Image</span>
                                                         <span class="fileinput-exists">Change</span>
-                                                        <input type="file" name="avatar" />
+                                                        <input type="file" name="post_image">
                                                     </span>
-                                                    <br />
+                                                    <br>
                                                     <a href="#pablo" class="btn btn-danger btn-round fileinput-exists"
                                                         data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                                                 </div>
@@ -78,11 +78,11 @@
                                 </div>
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-rose">Create Post</button>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/footer.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/error_check.php"); ?>
