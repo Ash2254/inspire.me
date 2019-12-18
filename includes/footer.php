@@ -41,6 +41,12 @@
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="/assets/js/material-dashboard.js?v=2.1.0" type="text/javascript"></script>
     <script>
+    // INITIALIZE TOOLTIPS
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
+    <script>
     // NAV CURRENT PAGE SELECTOR
     function navHighlight(elem, home, active) {
         var url = location.href.split('/'),

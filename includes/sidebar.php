@@ -110,7 +110,7 @@ endif;
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/posts.php">
+                <a class="nav-link" href="/posts/view.php">
                     <i class="material-icons">view_list</i>
                     <p> Posts </p>
                 </a>
