@@ -52,16 +52,22 @@
                                         }
                                     }
                         ?>
-                            <div class="card mb-0">
+                            <div class="card">
                                 <img src="<?=$post_row["image_url"]?>" alt="" class="card-img">
                             </div>
                             <div class="row">
                                 <div class="col-md-8">
+                                    <h2 class="text-center">Post Info</h2>
                                     <div class="card h-100">
-
+                                        <div class="card-header">
+                                            <h3 class="text-center card-title"><?=$post_row["title"]?></h3>
+                                            <p class="category text-center">
+                                                Posted on  
+                                                <?=date("l, F jS, Y @ g:ia", strtotime($post_row["date_created"]))?>
+                                                <?=($post_row["date_created"] != $post_row["date_modified"]) ? "<br>Last updated on ".date("l, F jS, Y @ g:ia", strtotime($post_row["date_created"])) : "" ?>
+                                            </p>
+                                        </div>
                                         <div class="card-body">
-    
-                                            <h2 class="text-center card-title"><?=$post_row["title"]?></h2>
                                             <p class="card-text"><?=$post_row["description"]?></p>
                                         </div>
                                         <div class="card-footer">
@@ -73,23 +79,24 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
+                                    <h2 class="text-center">Author</h2>
                                     <div class="card card-profile h-100">
                                         <?=($banner) ? "<img class=\"card-img-top\" src=\"$banner\">" : false ?>
                                         <div class="card-avatar">
-                                        <a href="#pablo">
-                                            <img class="img" src="<?=($avatar) ? $avatar : "/assets/img/placeholder.jpg"?>" alt="<?=$username?>'s Avatar"/>
+                                        <a href="/profile/view.php?id=<?=$post_row["author_id"]?>">
+                                            <img class="img" src="<?=($avatar) ? $avatar : "/assets/img/placeholder.jpg"?>" alt="<?=$post_row["username"]?>'s Avatar"/>
                                         </a>
                                         </div>
 
                                         <div class="card-body">
-                                        <h4 class="card-title"><?=$_SESSION["username"];?></h4>
+                                        <h4 class="card-title"><?=$post_row["username"]?></h4>
                                         <h6 class="card-category">
                                             <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/tags.php"); ?>
                                         </h6>
                                         <p class="card-description">
                                             <?=$bio?>
                                         </p>
-                                        <a href="#pablo" class="btn btn-rose btn-round">View Profile</a>
+                                        <a href="/profile/view.php?id=<?=$post_row["author_id"]?>" class="btn btn-rose btn-round">View Profile</a>
                                         </div>
                                     </div>
                                 </div>
