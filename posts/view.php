@@ -12,26 +12,26 @@
                         <div class="col-12">
                             <?php 
                         if (isset($_GET["id"])) {
-                            $post_query = "  SELECT posts.*, 
-                                post_images.url AS image_url,
+                            $post_query = " SELECT posts.*, 
+                                            post_images.url AS image_url,
 
-                                users.id AS user_id,
-                                users.username,
-                                banners.url AS banner_url,
-                                avatars.url AS avatar_url,
-                                users.bio
+                                            users.id AS user_id,
+                                            users.username,
+                                            banners.url AS banner_url,
+                                            avatars.url AS avatar_url,
+                                            users.bio
 
-                                FROM posts 
-                                LEFT JOIN users
-                                ON posts.author_id = users.id
-                                LEFT JOIN banners
-                                ON users.banner_id = banners.id
-                                LEFT JOIN avatars
-                                ON users.avatar_id = avatars.id
+                                            FROM posts 
+                                            LEFT JOIN users
+                                            ON posts.author_id = users.id
+                                            LEFT JOIN banners
+                                            ON users.banner_id = banners.id
+                                            LEFT JOIN avatars
+                                            ON users.avatar_id = avatars.id
 
-                                LEFT JOIN post_images
-                                ON posts.image_id = post_images.id
-                                WHERE posts.id = ".$_GET["id"];
+                                            LEFT JOIN post_images
+                                            ON posts.image_id = post_images.id
+                                            WHERE posts.id = ".$_GET["id"];
 
                             if ($post_result = mysqli_query($conn, $post_query)) {
                                 while($post_row = mysqli_fetch_array($post_result)):
