@@ -92,7 +92,7 @@
 
                         <div class="col-md-5 mr-auto">
 
-                            <form class="form" method="POST" action="actions/logins.php" id="register">
+                            <form class="form" method="POST" action="/actions/logins.php" id="register">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <div class="input-group">
