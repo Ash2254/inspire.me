@@ -180,7 +180,7 @@ if ($user_request = mysqli_query($conn, $user_query)):
 
                 </div>
                 <div class="card-body">
-                  <button class="btn btn-warning" id="changePassword">Change Password</button>
+                  <button class="btn btn-warning" id="changePassword" data-toggle="modal" data-target="#changePasswordModal">Change Password</button>
                   <button class="btn btn-danger" id="delete">Delete Account</button>
                 </div>
               </div>
@@ -189,6 +189,49 @@ if ($user_request = mysqli_query($conn, $user_query)):
         </div>
       </div>
     </div>
+
+<div class="modal fade" id="changePasswordModal" tabindex="-1" role="">
+  <div class="modal-dialog modal-login" role="document">
+      <div class="modal-content">
+          <div class="card card-signup card-plain">
+              <div class="modal-header">
+                <div class="card-header card-header-primary text-center">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="material-icons">clear</i>
+                  </button>
+
+                  <h4 class="card-title">Change your Password</h4>
+                </div>
+              </div>
+              <div class="modal-body px-3">
+                  <form class="form" method="POST" action="/actions/edit_profile.php">
+                      <input type="hidden" name="user_id" value="<?=$user_row["id"]?>">
+                      <div class="card-body">
+
+                          <div class="form-group bmd-form-group">
+                            <label for="oldpassword" class="bmd-label-floating">Old Password</label>
+                            <input id="oldpassword" name="oldpassword" type="password" class="form-control">
+                          </div>
+
+                          <div class="form-group bmd-form-group">
+                              <label for="password" class="bmd-label-floating">New Password</label>
+                              <input id="password" name="password" type="password" class="form-control">
+                          </div>
+
+                          <div class="form-group bmd-form-group">
+                              <label for="password2" class="bmd-label-floating">Confirm New Password</label>
+                              <input id="password2" name="password2" type="password" class="form-control">
+                          </div>
+                      </div>
+                    <div class="modal-footer my-3 justify-content-center">
+                        <button type="submit" name="action" value="change_password" class="btn btn-primary btn-wd">Change Password</button>
+                    </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 
 <?php 
   endwhile; 
@@ -263,48 +306,4 @@ $("button#delete").click(function (e) {
   })
 
 });
-
-// ANCHOR changePassword SWAL
-// FIXME change password
-// $("button#changePassword").click(function(e) {
-//   e.preventDefault();
-
-//   const changePasswordSwal = Swal.mixin({
-//     input: 'password',
-//     confirmButtonText: 'Next &rarr;',
-//     showCancelButton: true,
-//     progressSteps: ['1', '2', '3'],
-//     customClass: {
-//       confirmButton: 'btn btn-primary',
-//       cancelButton: 'btn btn-secondary'
-//     },
-//     buttonsStyling: false,
-//     reverseButtons: true
-//   })
-//   changePasswordSwal.queue([
-//     'Current Password',
-//     'New Password',
-//     {
-//       title: 'Confirm New Password',
-//       confirmButtonText: 'Update Password'
-//     }
-//   ]).then((result) => {
-//     var user_id = $("input:hidden[name=user_id]").val();
-//     $.ajax({
-//       type: "POST",
-//       url: "/actions/edit_profile.php",
-//       data: {
-//               action: "change_password", 
-//               user_id: user_id, 
-//               old_password: result.value[0],
-//               new_password: result.value[1],
-//               new_password2: result.value[2]
-//             }
-
-//     }).done(function() {
-//       // window.location.href = "/";
-//     });
-//   });
-
-// });
 </script>

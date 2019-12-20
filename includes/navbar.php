@@ -47,7 +47,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                         <?php if (isset($_SESSION["user_id"])): ?>
                         <a class="dropdown-item" href="/profile/view.php">Profile</a>
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <!-- <a class="dropdown-item" href="#">Settings</a> -->
                         <div class="dropdown-divider"></div>
                         <form action="/actions/logins.php" method="POST" id="logout">
                             <input type="hidden" name="action" value="logout">

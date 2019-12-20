@@ -203,17 +203,11 @@ elseif (isset($_POST["action"]) && $_POST["action"] == "delete") {
 
 // SECTION change password
 elseif (isset($_POST["action"]) && $_POST["action"] == "change_password") {
-    // * select current user and check if current password matches
-        // * check if new passwords match
-            // * update user
-    echo '<pre>';
-    print_r($_POST);
-    exit;
-    // FIXME update to work with modal
+
     $user_id            = $_POST["user_id"];
-    $current_password   = md5($_POST["password"]);
-    $new_password       = md5($_POST["new_password"]);
-    $new_password2      = md5($_POST["new_password2"]); 
+    $current_password   = md5($_POST["oldpassword"]);
+    $new_password       = md5($_POST["password"]);
+    $new_password2      = md5($_POST["password2"]); 
 
     $select_query = "   SELECT * FROM users 
                         WHERE id = $user_id
@@ -227,7 +221,7 @@ elseif (isset($_POST["action"]) && $_POST["action"] == "change_password") {
                                 WHERE id = $user_id";
 
             if (mysqli_query($conn, $update_query)) {
-                header("Location: http://".$_SERVER["SERVER_NAME"]."/profile.php?success=Password+Updated");
+                header("Location: http://".$_SERVER["SERVER_NAME"]."/profile/edit.php?success=Password+Updated");
             } else {
                 $errors[] = "Something went wrong: " . mysqli_error($conn);
             }

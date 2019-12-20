@@ -24,7 +24,7 @@
                           <span class="badge badge-pill badge-danger">Some Title</span>
                         </div>
                         <div class="timeline-body">
-                          <p>Wifey made the best Father's Day meal ever. So thankful so happy so blessed. Thank you for making my family We just had fun with the “future” theme !!! It was a fun night all together ... The always rude Kanye Show at 2am Sold Out Famous viewing @ Figueroa and 12th in downtown.</p>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit dolorum facilis voluptate consequatur soluta quasi hic molestiae perspiciatis adipisci? Doloremque rem vel culpa consectetur, impedit atque. Odio beatae rem id.</p>
                         </div>
                         <h6>
                           <i class="ti-time"></i> 11 hours ago via Twitter
@@ -40,7 +40,7 @@
                           <span class="badge badge-pill badge-success">Another One</span>
                         </div>
                         <div class="timeline-body">
-                          <p>Thank God for the support of my wife and real friends. I also wanted to point out that it’s the first album to go number 1 off of streaming!!! I love you Ellen and also my number one design rule of anything I do from shoes to music to homes is that Kim has to like it....</p>
+                          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos pariatur necessitatibus velit quae ipsam consequuntur laudantium quia perferendis, voluptatibus porro atque nesciunt? Expedita, similique! Quo praesentium incidunt quam quod placeat.</p>
                         </div>
                       </div>
                     </li>
@@ -53,8 +53,8 @@
                           <span class="badge badge-pill badge-info">Another Title</span>
                         </div>
                         <div class="timeline-body">
-                          <p>Called I Miss the Old Kanye That’s all it was Kanye And I love you like Kanye loves Kanye Famous viewing @ Figueroa and 12th in downtown LA 11:10PM</p>
-                          <p>What if Kanye made a song about Kanye Royère doesn't make a Polar bear bed but the Polar bear couch is my favorite piece of furniture we own It wasn’t any Kanyes Set on his goals Kanye</p>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur voluptatum quidem aperiam sequi ducimus dolorum pariatur nostrum odit exercitationem ipsum! Dolore fugiat maxime eius amet modi vero. Eos, saepe provident?</p>
+                          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint consectetur dolore beatae, voluptatum animi necessitatibus adipisci recusandae, id fugiat iste itaque, provident quae harum! Quo recusandae suscipit blanditiis vero est?</p>
                           <hr>
                         </div>
                         <div class="timeline-footer">
@@ -80,7 +80,7 @@
                           <span class="badge badge-pill badge-warning">Another One</span>
                         </div>
                         <div class="timeline-body">
-                          <p>Tune into Big Boy's 92.3 I'm about to play the first single from Cruel Winter also to Kim’s hair and makeup Lorraine jewelry and the whole style squad at Balmain and the Yeezy team. Thank you Anna for the invite thank you to the whole Vogue team</p>
+                          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit ipsam expedita asperiores assumenda ex est aperiam natus veritatis ducimus dolore repudiandae consequuntur, facere itaque consectetur delectus animi rerum molestias. Reiciendis.</p>
                         </div>
                       </div>
                     </li>

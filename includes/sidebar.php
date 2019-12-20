@@ -61,12 +61,12 @@ endif;
                                 <span class="sidebar-normal"> Edit Profile </span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <span class="sidebar-mini"><i class="material-icons">settings_applications</i></span>
                                 <span class="sidebar-normal"> Settings </span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:$('#logout').submit();">
                                 <span class="sidebar-mini"><i class="material-icons">exit_to_app</i></span>
