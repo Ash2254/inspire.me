@@ -2,7 +2,7 @@
 
 <?php
 // SECTION user query
-$user_id = (isset($_GET["user_id"])) ? $_GET["user_id"] : $_SESSION["user_id"];
+$user_id = (isset($_GET["id"])) ? $_GET["id"] : $_SESSION["user_id"];
 
 $user_query = " SELECT users.*, avatars.url AS avatar, banners.url AS banner
                 FROM users 
@@ -31,10 +31,8 @@ if ($user_request = mysqli_query($conn, $user_query)):
     }
 
         $username = $user_row["username"];
-        $email    = $user_row["email"];
         $bio      = $user_row["bio"];
         $avatar   = $user_row["avatar"];
-        $banner   = $user_row["banner"];
 // !SECTION user query
 ?>
 
@@ -58,20 +56,19 @@ if ($user_request = mysqli_query($conn, $user_query)):
                                     <div class="card-avatar mb-3">
                                         <a href="#pablo">
                                             <img class="img"
-                                                src="<?=($avatar) ? $avatar : "/assets/img/placeholder.jpg"?>"
-                                                alt="<?=$username?>'s Avatar" />
+                                                src="<?=($user_row["avatar"]) ? $user_row["avatar"] : "/assets/img/placeholder.jpg"?>"
+                                                alt="<?=$user_row["username"]?>'s Avatar" />
                                         </a>
                                     </div>
 
-                                    <h1 class="card-title"><?=$username?></h1>
+                                    <h1 class="card-title"><?=$user_row["username"]?></h1>
                                     <p class="category">
                                         <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/tags.php"); ?>
                                     </p>
 
                                 </div>
                                 <div class="card-body container">
-                                    <h4><?=$bio?></h4>
-
+                                    <h4><?=$user_row["bio"]?></h4>
                                 </div>
 
                             </div>
@@ -94,7 +91,8 @@ if ($user_request = mysqli_query($conn, $user_query)):
                                         LEFT JOIN post_images
                                         ON posts.image_id = post_images.id
                                         LEFT JOIN users
-                                        ON posts.author_id = users.id";
+                                        ON posts.author_id = users.id
+                                        WHERE posts.author_id = $user_id";
 
                         $current_page = (isset($_GET["page"])) ? $_GET["page"] : 1;
                         $limit = 3;

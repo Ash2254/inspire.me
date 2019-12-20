@@ -111,7 +111,7 @@ $tag_query  = " SELECT user_tags.*, tags.* FROM user_tags
                                     <p class="card-description">
                                         <?=$bio?>
                                     </p>
-                                    <a href="profile/view.php?user_id=<?=$user_row["id"]?>" class="btn btn-rose btn-round">View Profile</a>
+                                    <a href="profile/view.php?id=<?=$user_row["id"]?>" class="btn btn-rose btn-round">View Profile</a>
                                 </div>
                             </div>
                         </div>
