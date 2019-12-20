@@ -64,18 +64,22 @@
                                             <p class="category text-center">
                                                 Posted on  
                                                 <?=date("l, F jS, Y @ g:ia", strtotime($post_row["date_created"]))?>
-                                                <?=($post_row["date_created"] != $post_row["date_modified"]) ? "<br>Last updated on ".date("l, F jS, Y @ g:ia", strtotime($post_row["date_created"])) : "" ?>
+                                                <?=($post_row["date_created"] != $post_row["date_modified"]) ? "<br>Last updated on ".date("l, F jS, Y @ g:ia", strtotime($post_row["date_modified"])) : "" ?>
                                             </p>
                                         </div>
                                         <div class="card-body">
                                             <p class="card-text"><?=$post_row["description"]?></p>
                                         </div>
+                                        <?php if($post_row["author_id"] == $_SESSION["user_id"] || $_SESSION["role"] == 1) { ?>
                                         <div class="card-footer">
                                             <div class="ml-auto">
                                                 <a href="/posts/edit.php?id=<?=$post_row["id"]?>" class="btn btn-warning btn-fab btn-round" data-toggle="tooltip" data-placement="top" title="Edit"><i class="material-icons">edit</i></a>
-                                                <button type="button" class="btn btn-danger btn-fab btn-round" data-toggle="tooltip" data-placement="top" title="Delete"><i class="material-icons">delete</i></button>
+                                                <button id="delete" type="button" class="btn btn-danger btn-fab btn-round" data-toggle="tooltip" data-placement="top" title="Delete"><i class="material-icons">delete</i></button>
+                                                <input type="hidden" name="user_id" value="<?=$post_row["author_id"]?>">
+                                                <input type="hidden" name="post_id" value="<?=$post_row["id"]?>">
                                             </div>
                                         </div>
+                                        <?php } ?>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -195,29 +199,33 @@
                     <div class="col-4">
                         <!-- SECTION post cards -->
                         <div class="card card-product">
-                            <div class="card-header card-header-image" data-header-animation="true">
+                            <div class="card-header card-header-image" <?= ($post_row["author_id"] == $_SESSION["user_id"] || $_SESSION["role"] == 1) ? "data-header-animation=\"true\"" : "" ?>>
                                 <a href="#pablo">
                                     <img class="img" src="<?=$post_row["image_url"]?>">
                                 </a>
                             </div>
                             <div class="card-body">
+                                <?php if ($post_row["author_id"] == $_SESSION["user_id"] || $_SESSION["role"] == 1) { ?>
                                 <div class="card-actions text-center">
                                     <button type="button" class="btn btn-danger btn-link fix-broken-card">
                                         <i class="material-icons">build</i> Fix Header!
                                     </button>
-                                    <button type="button" class="btn btn-default btn-link" rel="tooltip"
+                                    <a href="?id=<?=$post_row["id"]?>" class="btn btn-default btn-link" rel="tooltip"
                                         data-placement="bottom" title="" data-original-title="View">
                                         <i class="material-icons">art_track</i>
-                                    </button>
-                                    <button type="button" class="btn btn-success btn-link" rel="tooltip"
+                                    </a>
+                                    <a href="/posts/edit.php?id=<?=$post_row["id"]?>" class="btn btn-success btn-link" rel="tooltip"
                                         data-placement="bottom" title="" data-original-title="Edit">
                                         <i class="material-icons">edit</i>
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-link" rel="tooltip"
+                                    </a>
+                                    <button id="delete" type="button" class="btn btn-danger btn-link" rel="tooltip"
                                         data-placement="bottom" title="" data-original-title="Remove">
                                         <i class="material-icons">close</i>
                                     </button>
+                                    <input type="hidden" name="user_id" value="<?=$post_row["author_id"]?>">
+                                    <input type="hidden" name="post_id" value="<?=$post_row["id"]?>">
                                 </div>
+                                <?php } ?>
                                 <h4 class="card-title">
                                     <a href="?id=<?=$post_row["id"]?>"><?=$post_row["title"]?></a>
                                 </h4>
@@ -225,7 +233,13 @@
                                     <?=$post_row["description"]?>
                                 </div>
                                 <div class="text-center mt-3">
-                                    <a href="?id=<?=$post_row["id"]?>" class="btn btn-primary btn-round">View Post</a>
+                                    <?php 
+                                    if ($post_row["author_id"] == $_SESSION["user_id"]) {
+                                        echo "<a href=\"?id=".$post_row["id"]."\" class=\"btn btn-rose btn-round\">View Your Post</a>";
+                                    } else {
+                                        echo "<a href=\"?id=".$post_row["id"]."\" class=\"btn btn-primary btn-round\">View Post</a>";
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -256,3 +270,46 @@
 
 <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/footer.php"); ?>
 <?php require_once($_SERVER["DOCUMENT_ROOT"]."/includes/error_check.php"); ?>
+<script>
+$("button#delete").click(function (e) { 
+  e.preventDefault();
+  
+  const deletePostSwal = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-danger',
+      cancelButton: 'btn btn-secondary'
+    },
+    buttonsStyling: false
+  })
+
+  deletePostSwal.fire({
+    title: 'Are you sure you would like to delete this post?',
+    text: "This action is irreversible.",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.value) {
+        var post_id = $(this).nextAll("input:hidden[name=post_id]").val();
+        var user_id = $(this).nextAll("input:hidden[name=user_id]").val();
+            $.ajax({
+              type: "POST",
+              url: "/actions/edit_post.php",
+              data: {action: "delete_post", post_id: post_id, user_id: user_id}
+
+            }).done(function() {
+              window.location.href = "/posts/view.php?success=Post+Successfully+Deleted";
+            })
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      deletePostSwal.fire(
+        'Cancelled',
+        'Post has not been deleted.',
+        'error'
+      )
+    }
+  })
+
+});
+</script>

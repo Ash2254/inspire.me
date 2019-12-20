@@ -29,10 +29,11 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="post_tags" class="bmd-label-floating">Tags (Press
-                                                        <kbd>Enter</kbd> or <kbd>,</kbd> to Seperate tags)</label>
-                                                    <input type="text" name="post_tags" id="post_tags"
-                                                        class="tagsinput form-control" data-color="info">
+                                                    <select class="selectpicker" data-style="btn btn-primary btn-round btn-sm" id="category" name="post_category">
+                                                        <option selected disabled>Category</option>
+                                                        <option value="Web Development">Web Development</option>
+                                                        <option value="Graphic Design">Graphic Design</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
