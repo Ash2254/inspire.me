@@ -58,7 +58,7 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <h2 class="text-center">Post Info</h2>
-                                    <div class="card h-100">
+                                    <div class="card">
                                         <div class="card-header">
                                             <h3 class="text-center card-title"><?=$post_row["title"]?></h3>
                                             <p class="category text-center">
@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <h2 class="text-center">Author</h2>
-                                    <div class="card card-profile h-100">
+                                    <div class="card card-profile">
                                         <?=($banner) ? "<img class=\"card-img-top\" src=\"$banner\">" : false ?>
                                         <div class="card-avatar">
                                         <a href="/profile/view.php?id=<?=$post_row["author_id"]?>">
@@ -147,7 +147,7 @@
                             }
 
                             $current_page = (isset($_GET["page"])) ? $_GET["page"] : 1;
-                            $limit = 3;
+                            $limit = 6;
                             $offset = $limit * ($current_page - 1);
 
                             $post_query.= "  ORDER BY posts.date_created DESC

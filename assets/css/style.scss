@@ -4,3 +4,30 @@
 .sidebar-mini {
     margin-top: 2px;
 }
+
+#carousel {
+    height: 100vh;
+
+    .carousel-inner {
+        height: 100%;
+        
+        .carousel-item {
+            height: 100%;
+
+            img {
+                object-fit: cover;
+                height: 100%;
+            }
+        }
+    }
+}
+
+.card-header-image img, .card-image-top {
+    height: 300px;
+    object-fit: cover;
+}
+
+.card-img {
+    height: 100vh;
+    object-fit: contain;
+}

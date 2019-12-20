@@ -116,12 +116,14 @@ endif;
                 </a>
             </li>
             <hr>
+            <?php if(isset($_SESSION["user_id"])): ?>
             <li class="nav-item">
                 <a href="/posts/create.php" class="nav-link">
                     <i class="material-icons">add_post</i>
                     <p>Add Post</p>
                 </a>
             </li>
+            <?php endif; ?>
         </ul>
         <!-- !SECTION nav -->
 
