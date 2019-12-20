@@ -72,8 +72,7 @@
                                 <div class="description">
                                     <h4 class="info-title">Get Inspired</h4>
                                     <p class="description">
-                                        View work from other designers and developers to get inspired, or post your own
-                                        to inspire others!
+                                        View work from other designers and developers to get inspired!
                                     </p>
                                 </div>
                             </div>
@@ -83,9 +82,9 @@
                                     <i class="material-icons">star</i>
                                 </div>
                                 <div class="description">
-                                    <h4 class="info-title">Star Designs You Love</h4>
+                                    <h4 class="info-title">Inspire Others</h4>
                                     <p class="description">
-                                        If you love a post, give it a star to show your appreciation!
+                                        Post your own designs to inspire others!
                                     </p>
                                 </div>
                             </div>
