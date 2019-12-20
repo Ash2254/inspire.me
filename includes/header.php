@@ -14,7 +14,7 @@
     <!-- Material Dashboard CSS -->
     <link rel="stylesheet" href="/assets/css/style.css">
 
-    <title>Title</title>
+    <title>Inspire.me</title>
 </head>
 
 <body>
